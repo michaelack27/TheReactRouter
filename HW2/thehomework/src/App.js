@@ -71,6 +71,41 @@ function App() {
     }
 
     if (data){
+      if(((currentQuestion+1) % 2) == 0){
+        return(
+          <div className='app'>
+          
+          
+          
+          <div className="questions">
+            <h2 style={{color:"white"}}>Question #{currentQuestion + 1}</h2>
+          </div>
+          <div className ='correct-score'>
+                <h3 style={{color:"green"}}>Correct Answers: {correctScore}</h3>
+          </div>
+          <div className ='Incorrect-score'>
+                <h3 style={{color:"red"}}>Incorrect Answers: {incorrectScore}</h3>
+          </div>
+          <div className='question-text'>
+            <h1 style={{font:"Times"}}>{data.results[currentQuestion].question}</h1>
+            </div>
+          <div className = 'answer-buttons'>
+            
+              {data.results[currentQuestion].incorrect_answers.map((wronganswers)=> (
+                <Button variant="contained" size="large" onClick={()=> handleWrongAnswer(wronganswers.isWrong)}>{wronganswers}</Button>
+              ))}
+            <Button variant="contained" size="large" onClick={()=> handleCorrectAnswer()}>{data.results[currentQuestion].correct_answer}</Button>
+          
+          </div>
+          
+          
+          </div> 
+              
+         
+        
+    
+        )  
+      }else{
       return(
         <div className='app'>
         
@@ -102,7 +137,7 @@ function App() {
        
       
   
-      )
+      )}
     }else{
       return(
         <h1>Loading...</h1>
